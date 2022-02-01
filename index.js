@@ -17,7 +17,10 @@ const getUserRequest = function() {
         if (request.toLowerCase() == "view employees") {
             showEmployees();
         }
-        console.log(request);
+        if (request.toLowerCase() == "add department") {
+            addDepartment();
+        }
+        
       
     })
 }
@@ -65,6 +68,23 @@ const showEmployees = function() {
         console.table(results);
         getUserRequest();
         
+    })
+}
+
+const addDepartment = function() {
+    inquirer.prompt({
+        type: "input",
+        name: "name",
+        message: "What is the department name?"
+    })
+    .then(({ name }) => {
+        const connection = getConnection()
+        connection.query("insert into departments (name) values(?)", name, function(err, results, fields) {
+            if (err) {
+                console.log(err);
+            }
+            showDepartments();
+        })
     })
 }
 
