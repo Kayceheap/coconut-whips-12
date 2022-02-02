@@ -6,7 +6,14 @@ const getUserRequest = function () {
     inquirer.prompt({
         type: "input",
         name: "request",
-        message: "What would you like to do?"
+        message: `What would you like to do? 
+        View departments, 
+        View roles, 
+        View employees, 
+        Add department, 
+        Add role, 
+        add employee, 
+        update employee?`
     }).then(({ request }) => {
         if (request.toLowerCase() == "view departments") {
             showDepartments();
